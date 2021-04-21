@@ -318,3 +318,12 @@ func scaleObjectUpdated(namespace, name string) pkgreconciler.Event {
 func scaleObjectDeploymentFailed(namespace, name string, err error) pkgreconciler.Event {
 	return pkgreconciler.NewEvent(corev1.EventTypeWarning, "ScaleObjectDeploymentFailed", "ScaledObject deployment failed to: \"%s/%s\", %w", namespace, name, err)
 }
+
+func (r *Reconciler) deleteFunc(obj interface{}) {
+	logging.FromContext(context.TODO()).Info("In delete function for Source")
+	if obj == nil {
+		return
+	}
+	logging.FromContext(context.TODO()).Info("Object not nil")
+	//WE DO END UP HERE WHEN A SOURCE CRD IS DELETED!!!!! WHAT CAN WE DO HERE?
+}
